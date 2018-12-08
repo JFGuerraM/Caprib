@@ -6,19 +6,14 @@ use warnings;
 #use Set::Scalar;
 use Data::Dumper;
 
-
-#mergeCDDfeature.pl ISvsD.csv ISvsDfeatdata.txt merged.tsv
+#usage: mergeCDDfeature.pl ISvsD.csv ISvsDfeatdata.txt merged.tsv
 
 my $path= pop(@ARGV);
 my $hitdata=pop(@ARGV);
 my $report=pop(@ARGV);
 
 findCDD();
-#print $hitdata;
-
 exit;
-#my $da=mutations();
-#print Dumper( $da);
 
 sub indices{ 
 	my $countHits=0; 	#counting every proteins in the file
@@ -33,8 +28,7 @@ sub indices{
 		if (($a !~ /^Protein/)&&(scalar @values >5)){
 			$countHits++; 			
 			$protein= $values[0];
-			$refseq=$values[1];
-			#print $values[0]."\n";
+			$refseq=$values[1];			
 			$dictP->{$refseq}=$protein;			
 		}
 		
@@ -61,16 +55,13 @@ sub mutations{
 			$countHits++; 			
 			$protein= $values[4];
 			$refseq=$values[1];			
-			$dictP->{$refseq}=$protein;
-			#print "$values[1] : $values[4].\n";
+			$dictP->{$refseq}=$protein;			
 		}
 		if ($a =~ /Stats: counting variations/){
 			last;
 		}
 	}
-	close($REP);
-	
-	#print $countHits;
+	close($REP);		
 	return $dictP;
 }
 
@@ -78,8 +69,7 @@ sub mutations{
 sub findCDD{
 	my $countHits=0; 	#counting every cdd in the file
 	my $HIT;
-	my $dictP=indices();
-	
+	my $dictP=indices();	
 	my ($fho, $output);
 	my $dictM=mutations();
 	my ($refseq, $max, $min);
@@ -116,7 +106,7 @@ sub findCDD{
 			}
 			
 			if (exists ($dictM->{$refseq})){
-				#print " $refseq existe\n";
+				
 				@values = %$dictM{$refseq};
 				print "values1: @values[1]\n";
 				my @mutations=split(",",($values[1]));

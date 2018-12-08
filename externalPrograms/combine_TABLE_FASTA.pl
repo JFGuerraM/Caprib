@@ -63,8 +63,6 @@ sub calculate_fasta {
     my $FASTA;
     my $sequence;
 	  my %combination = calculate_table ();
-
-	  #for linux \/ for windows \\
     open($FASTA, $fasta);
     my $output_name;
   	if(($Config{osname} eq "linux")||($Config{osname} eq "darwin")){
@@ -77,7 +75,7 @@ sub calculate_fasta {
     my $OUTPUT;
 	  open($OUTPUT, ">$output_name");
     my $count=0;
-    #
+    
     while (<$FASTA>) {
       my $a;
       my $line = $_;
@@ -89,24 +87,13 @@ sub calculate_fasta {
         if(defined $sequence){
           print $OUTPUT $sequence."\n";
         }
-
-        #
-
-        #print "patata2\n";
-        #print $gi;
-        #print"\n";
-        #print $combination{$gi};
         if (exists $combination{$gi}){
-          #print "patata3\n";
-          #print $combination{$gi};
-          #print "\n";
+          
           $a = $combination{$gi};
 				  $count+=1;
 				  print $OUTPUT ">$a\n";
           $sequence = "";
-        }
-        #print $OUTPUT $sequence."\n";
-
+        }       
       }
       elsif ($line =~ /(\w+)/) {
         # concatenate each sequence line
@@ -115,9 +102,8 @@ sub calculate_fasta {
 
     }
     print "File with $count proteins\n";
-    #$a=%$combination{$gi};
-    #print $OUTPUT "> $a\n";
-	  print $OUTPUT $sequence."\n";
+    
+	print $OUTPUT $sequence."\n";
     close ($FASTA);
     close ($OUTPUT);
 }

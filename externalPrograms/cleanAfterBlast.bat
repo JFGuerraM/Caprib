@@ -1,3 +1,4 @@
+::cleaning bash file
 cd externalPrograms\
 del  *.txt
 del  *.fasta

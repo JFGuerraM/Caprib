@@ -3,8 +3,6 @@
 use strict;
 use Data::Dumper;
 
-
-
 my $identityLimit= pop(@ARGV);
 my $output=pop(@ARGV); 
 my $inputf = pop(@ARGV);
@@ -77,7 +75,7 @@ while(<$BLAST>){
 			$longueurP=~ s/((.*)\/)//g;
 			$sim= (split)[7];
 			$sim =~ s/(\(|\)|\%|,)//g;
-			#print $id," ", $longueurP, " ", $sim,"\n";
+			
 		}		
 		elsif ($control >= 1){
 			$q=$s=1;
@@ -94,7 +92,7 @@ while(<$BLAST>){
 		if ($id >= $identityLimit){
 			print $fho "$queryR;$longueurP;$id;$sim;$ev\n";
 		}
-		#print "$queryR;0;$id;0\n";
+		
 				
 	}
 	
@@ -138,9 +136,7 @@ while(<$BLAST>){
 	}
 	#we print only filtered information for the first hit
 	if (($id >= $identityLimit)&&(/^Effective/ && $s )){
-		#first informations: "Proteine;length Sbjct;Identity;similarity;e-value"
-		
-		
+		#first informations: "Proteine;length Sbjct;Identity;similarity;e-value"		
 		#now we need to extract information in the compare line
 		#so, if there are a sequence, we'll not take if we don't found hits id=0
 		
@@ -162,9 +158,8 @@ while(<$BLAST>){
 			my (@gapQ, @gapS, @trunqueS)=();
 			#to take every gap index in the sequence
 			my @indicesGapSeq=(); #pour prendre les indices de chaque gap in the sequence
-			my  @aas=(); #TABLA PARA la posicion que precede al gap y los aminoacidos de laotra secuencia... insertados"
-			my @aasOut=();#TABLA PARA la posicion que precede al gap y los aminoacidos de laotra secuencia... deletees"							
-
+			my  @aas=(); 
+			my @aasOut=();
 			#we split our three sequences	
 			my @seq=split("",$sequence);
 			my @seqQ=split("",$seqQ);
@@ -246,10 +241,6 @@ while(<$BLAST>){
 					}						
 						
 					if (!$controlgap){
-					
-						#push(@aadiference,$counting);
-						#print "$queryR diferencia: $seqQ[$counting-($firstQ)]\/$seqS[$counting-($firstQ)] $counting\n";
-						
 						push(@aadiference_L,"$counting".":"."$seqQ[$countGi-($firstQ)]\/$seqS[$countGi-($firstQ)]");
 						$counting ++;
 					}						
@@ -262,7 +253,7 @@ while(<$BLAST>){
 				}
 				#if similar amino acid	
 				elsif($letter=~ /\+/){
-					#push(@aasimilar,$counting);
+					
 					push(@aasimilar_L,"$counting".":"."$seqQ[$countGi-($firstQ)]\/$seqS[$countGi-($firstQ)]");
 					$counting ++;
 				}
@@ -271,14 +262,7 @@ while(<$BLAST>){
 			print $fho "$queryR;$longueurP;$id;$sim;$ev";
 			print $fho ";".(join",",@aaidentical).";".(join",",@aasimilar_L).";".
 			(join",",@aadiference_L).";".(join",",@gap).";".(join",",@gapOut).";".
-			(join",",@aaStop)."\n";
-			
-			#to extrac sequences we could do this:
-			if($queryR eq " HP0003") {
-				#print $seqQ,"\n";
-				#print $sequence,"\n";
-				#print $seqS,"\n";
-			}
+			(join",",@aaStop)."\n";			
 			$control++;
 			$s=1;
 			$sequence= '';
@@ -286,11 +270,8 @@ while(<$BLAST>){
 			$seqQ='';
 			$seqS='';
 			$queryR="";
-		}
-		
-	}
-	
-	
+		}		
+	}	
 }
 close ($BLAST);
 close ($fho);

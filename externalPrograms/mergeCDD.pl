@@ -13,11 +13,7 @@ my $report=pop(@ARGV);
 
 
 findCDD();
-#print $hitdata;
-
 exit;
-#my $da=mutations();
-#print Dumper( $da);
 
 sub indices{ 
 	my $countHits=0; 	#counting every proteins in the file
@@ -32,14 +28,12 @@ sub indices{
 		if (($a !~ /^Protein/)&&(defined $values[4])){
 			$countHits++; 			
 			$protein= $values[0];
-			$refseq=$values[1];
-			#print "$refseq $protein\n";
+			$refseq=$values[1];			
 			$dictP->{$refseq}=$protein;			
 		}		
 	}
 	close($REP);
-	
-	#print $countHits;
+
 	return $dictP;
 }
 
@@ -63,7 +57,6 @@ sub mutations{
 	}
 	close($REP);
 	
-	#print $countHits;
 	return $dictP;
 }
 
@@ -90,39 +83,21 @@ sub findCDD{
 			$refseq=(split(" ", $line[0]))[2]; #on enleve le Q# - 
 			$min=$line[3];
 			$max=$line[4];
-			#print "$refseq  $min $max \n";
-			#print Dumper($dictP);
+			
 			if (exists ($dictM->{$refseq})){
 				@values = %$dictM{$refseq};
 				my @mutations=split(",",($values[1]));
 				my $ref=%$dictP{$refseq};
 				foreach my $i(@mutations){
 					$i =~ s/[^a-zA-Z0-9_]//g;
-					if (($i >= $min) && ($i <= $max)){
-						#print "$i $min $max\n";
+					if (($i >= $min) && ($i <= $max)){						
 						print $fho "$ref \t$i\t".$a."\n";						
-					}
-					
-				}
-				#print @values;
-				#print "\n";
-				#exit;
-			}
-				
-			#print "patata";
-			#exit;
-			
-			#print "$refseq  $min $max \n";
-			
-			
-			#$values=();
+					}					
+				}				
+			}			
 		}		
 	}
 	close($HIT);
 	close $fho;
 	print $countHits;
-	
-
-
-
 }
