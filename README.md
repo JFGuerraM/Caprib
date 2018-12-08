@@ -4,9 +4,10 @@
 <p>Project to detect the amino acids that changed during bacterial evolution</p>
 
 ## Dependencies<h2>
-* Java 
-* Perl 
-* Xampp 
+* [Java](https://www.java.com/fr/download/help/index_installing.xml) 
+* [Perl](https://www.activestate.com/activeperl/downloads) 
+* [Xampp](https://www.apachefriends.org/index.html ) 
+* [Blast+](https://www.ncbi.nlm.nih.gov/books/NBK52637/)
 
 ### Supported on:<h3>
 * Unix-like operating systems
