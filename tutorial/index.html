@@ -2,162 +2,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Document sans nom</title>
-<style type="text/css">
-<!--
-body {
-	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
-	background-color: #42413C;
-	margin: 0;
-	padding: 0;
-	color: #000;
-}
-
-/* ~~ Sélecteurs d'éléments/balises ~~ */
-ul, ol, dl { /* En raison des variations entre les navigateurs, il est conseillé d'attribuer une valeur de zéro aux marges intérieures et aux marges des listes. A des fins de cohérence, vous pouvez définir les valeurs désirées dans cette zone ou dans les éléments de liste (LI, DT, DD) qu'elle contient. N'oubliez pas que les paramètres que vous définissez ici se répercuteront sur la liste .nav, sauf si vous rédigez un sélecteur plus spécifique. */
-	padding: 0;
-	margin: 0;
-}
-h1, h2, h3, h4, h5, h6, p {
-	margin-top: 0;	 /* la suppression de la marge supérieure résout un problème où les marges sortent de leur div conteneur. La marge inférieure restante l'éloignera de tout élément qui suit. */
-	padding-right: 15px;
-	padding-left: 15px; /* l'ajout de la marge intérieure aux côtés des éléments à l'intérieur des divs, et non aux divs proprement dit, évite le recours à des calculs de modèle de boîte. Une autre méthode consiste à employer une div imbriquée avec marge intérieure latérale. */
-}
-a img { /* ce sélecteur élimine la bordure bleue par défaut affichée dans certains navigateurs autour d'une image lorsque celle-ci est entourée d'un lien. */
-	border: none;
-}
-/* ~~ La définition du style des liens de votre site doit respecter cet ordre, y compris le groupe de sélecteurs qui créent l'effet de survol. ~~ */
-a:link {
-	color: #42413C;
-	text-decoration: underline; /* à moins que vous ne définissiez un style particulièrement exclusif pour vos liens, mieux vaut prévoir un soulignement, qui garantit une identification visuelle rapide. */
-}
-a:visited {
-	color: #6E6C64;
-	text-decoration: underline;
-}
-a:hover, a:active, a:focus { /* ce groupe de sélecteurs offrira à un navigateur au clavier la même expérience de survol que celle d'une personne employant la souris. */
-	text-decoration: none;
-}
-
-/* ~~ ce conteneur à largeur fixe entoure les autres divs ~~ */
-.container {
-	width: 960px;
-	background-color: #FFF;
-	margin: 0 auto; /* la valeur automatique sur les côtés, associée à la largeur, permet de centrer la mise en page */
-}
-
-/* ~~ aucune largeur n'est attribuée à l'en-tête. Il occupera toute la largeur de votre mise en page. Il contient un espace réservé pour une image, qui doit être remplacé par votre logo lié. ~~ */
-.header {
-	background-color: #bae0e4;
-}
-
-/* ~~ Informations de mise en page. ~~ 
-
-1) La marge intérieure n'est placée qu'en haut et/ou en bas de la div. Les éléments à l'intérieur de cette div posséderont une marge intérieure sur les côtés. Vous évitez ainsi de devoir recourir à des « calculs de modèle de boîte ». N'oubliez pas que si vous ajoutez une marge intérieure latérale ou une bordure à la div proprement dite, elle sera ajoutée à la largeur que vous définissez pour créer la largeur totale. Vous pouvez également supprimer la marge intérieure de l'élément dans la div et placer une seconde div à l'intérieur, sans largeur et possédant une marge intérieure appropriée pour votre concept.
-
-*/
-
-.content {
-
-	padding: 0px 0;
-}
-
-/* ~~ Pied de page ~~ */
-.footer {
-	padding: 10px 0;
-	background-color: #9db9bc;
-}
-
-/* ~~ classes flottant/effacement diverses ~~ */
-.fltrt {  /* cette classe peut servir à faire flotter un élément depuis la droite sur votre page. L'élément flottant doit précéder l'élément à côté duquel il doit apparaître sur la page. */
-	float: right;
-	margin-left: 8px;
-}
-.fltlft { /* cette classe peut servir à faire flotter un élément depuis la gauche sur votre page. L'élément flottant doit précéder l'élément à côté duquel il doit apparaître sur la page. */
-	float: left;
-	margin-right: 8px;
-}
-.clearfloat { /* cette classe peut être placée sur une div <br /> ou vide, en tant qu'élément final suivant la dernière div flottante (dans le #container) si le paramètre #footer est supprimé ou retiré du #container */
-	clear:both;
-	height:0;
-	font-size: 1px;
-	line-height: 0px;
-}
-
-
-#menu ul {
-	background-color: #199589;
-	width: 960px;
-	height: 50px;
-	float: left;
-	text-align:center
-	
-}
-#menu ul li{
-	list-style-type:none;
-	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-	font-size:large;
-	font-weight:900;
-	line-height:50px;
-	text-align:center;
-	text-transform:uppercase;
-	color:#FFF;		
-	margin: 0px 20px;
-}
-#menu a{
-	width:25%;
-	display:block;
-	float:left;
-	color:#FFF;
-	text-decoration:none;
-	
-}
-
-#menu ul a:hover{
-	a: active;
-	a:focus;
-	background-color:#3CC;
-}
-	
-	
--->
-</style></head>
-
-<body>
-
-<div class="container">
-
-  <div class="header"><a href="#"><img src="images/caprib.png" alt="Insérer le logo ici" name="Insert_logo" width="257" height="81" id="Insert_logo" style="background-color: #bae0e4; display:block;" /></a> 
-    <!-- end .header --></div>
-  <div class="content">
-   <div id="menu">
-     <ul>
-       <li><a href="index.html">home</a></li>
-       <li><a href="newProject.html">File menu</a></li>
-       <li><a href="database.html">Database menu</a></li>
-       <li><a href="#">Operations menu</a></li>
-     </ul>
-    </div>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <h1>Caprib Tutorial</h1>
-    <p>Caprib is a  bioinformatics tool that allows researchers to study evolutionary events by comparing  whole-bacterial-genome sequences. Overall, this tool generates a list of  proteins with amino acids substitutions that are predicted to have impacted biological  functions at a given node of evolution.  These  substitutions may explain the emergence of a given phenotype for a group of  bacteria at this particular node of evolution.</p>
-<p>.    </p>
-    <h3>Caprib operations</h3>
-    <div align="center">
-      <table width="745" border="1">
-      <tr>
-        <td width="735"><div align="center"><img src="images/capriboperations.png" width="489" height="648" alt="caprib operations" /></div></td>
-      </tr>
-    </table>
-  </div>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <!-- end .content --></div>
-  <div class="footer">
-    <p align="right"><img src="images/INRS_logo_RVB (1).png" alt="inrs" width="218" height="101" /></p>
-    <!-- end .footer --></div>
-  <!-- end .container --></div>
+<link href="./style.css" type="text/css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Song+Myung|ZCOOL+KuaiLe" rel="stylesheet">
+<title>CAPRIB TUTORIAL</title>
+</head>
+<body>	
+	<div class="container">
+		<!-- Header -->
+		<nav class="header">
+			<h1 class="title">Comparative Analyses of Proteins in Bacterial</h1>
+			<ul>	
+			  <li><a href="index.html">home</a></li>
+			  <li><a href="newProject.html">File menu</a></li>
+			  <li><a href="database.html">Database menu</a></li>
+			  <li><a href="operations.html">Operations menu</a></li>
+			</ul>
+		</nav>
+		<!-- Banner Section -->
+		<div class="banner">
+			<a href="#"><img src="images/caprib.png" alt="Insérer le logo ici" name="Insert_logo" width="257" height="81" id="Insert_logo"/></a> 
+		</div>
+		
+		<div class="content">
+			
+			<h1>Tutorial</h1>
+			<p>Caprib is a  bioinformatics tool that allows researchers to study evolutionary events by comparing whole-bacterial-genome sequences. Overall, this tool generates a list of  proteins with amino acids substitutions that are predicted to have impacted biological  functions at a given node of evolution. These substitutions may explain the emergence of a given phenotype for a group of bacteria at this particular node of evolution.</p>
+			
+			<h2>Caprib Operations</h2>
+	   
+      
+			
+			<img src="images/capriboperations.png" alt="caprib operations" class="picture">
+			 <p>&nbsp;</p>
+			 <p>&nbsp;</p>
+			 <p>&nbsp;</p>
+   		<!-- end .content --></div>
+		<div class="footer">
+		
+		<img src="images/INRS_logo_RVB (1).png" alt="inrs" class="institute" >
+		<!-- end .footer --></div>
+	<!-- end .container --></div>
 </body>
 </html>

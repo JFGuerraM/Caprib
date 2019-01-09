@@ -1,0 +1,126 @@
+
+body{	
+	background-color: #42413C;
+	margin: 0;	
+}
+
+.container{
+	margin: 0 auto;
+	width: 80%;	
+	height:100%;
+	color: #000;
+	background-color:#FFF;
+}
+.content{
+	margin: 20px;
+	position: relative;
+	top:93px;	
+}	
+.banner{
+	border-top: 1px solid #8FBC8F;
+	float: left;
+	height: 81px;
+	display:block;
+	background-color:#8FBC8F;
+	position: relative;
+	top:93px;
+	width: 100%;
+	box-sizing: border-box;
+}
+p{
+	font-family: "Song Myung", "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+} 
+h3, 
+h2,
+h1{
+	color: rgb(27,125,156);
+	text-align: center;
+	font-weight: 700;
+}
+.header{
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	padding:5px;
+	margin: 0 auto;
+	background-color: #199589;
+	color: #FFF; 
+	border: 1px solid #199589;
+	width: 80%;
+	height: 114px;	
+	top:0;
+	position: fixed;
+	z-index:10; 
+	box-sizing: border-box;	
+}
+
+ul {  
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+.header li{     
+  font-weight: 300;
+  text-transform: uppercase;
+  display:inline-block;
+  width: 20%;
+  margin: 0 auto;
+  padding: 5px 0px;
+}
+ul a{
+	padding: 3px 0px;			
+	color:#FFF;
+	text-decoration:none;	
+	display: block;	
+}
+
+ul a:hover{
+	a: active;
+	a:focus;
+	background-color:#3CC;
+}
+
+a img { /* ce sélecteur élimine la bordure bleue par défaut affichée dans certains navigateurs autour d'une image lorsque celle-ci est entourée d'un lien. */
+	border: none;
+}
+h1.title{
+	color: #FFF;
+	text-align:center;
+}
+table{
+	width:200px;
+	border: 1px solid #199589;
+}
+.picture{	
+	
+	margin:10px auto;
+	display:block;
+	border: 1px solid #199589;
+}
+.redimension{
+	width: 40%;
+	height:40%;
+}
+.list{
+	padding-left:20px; 
+	 
+}
+.list ol{
+	padding-left:20px;
+	font-family: "Song Myung", "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	line-height: 1.8;
+}
+.footer{
+	padding: 10px 0;
+	display: inline-block;
+	width: 100%;
+	height:100px;		
+	background-color: rgb(166,216,227);	
+	border-top: 1px solid #8FBC8F;
+}
+.institute{
+	width: 218px;
+	height:101px;
+	float:right;	
+}
