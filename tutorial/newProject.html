@@ -55,23 +55,25 @@
 		<h2>Open Project</h2>
 		<p>This option  is used when the user have other analysis to do on an existing project.</p>
 		<p>Then, the  user can choose the existing project.</p>
+		<img class="picture" src="images/open.png" width="501" height="341" alt="open an existing project" />
+
 		<h2>Blast &amp; Filter</h2>
 		<p>To start  the blast, the user will need input files: the protein fasta file and the  feature file for the reference organism.<em> Neisseria elongata</em> is used in our example. The files are provided for  training purposes in the tutorial folder named respectively: </p>
-		<p>-GCF_000818035.1_ASM81803v1_protein.faa</p>
-		<p>-GCF_000818035.1_ASM81803v1_feature_table.txt</p>
+		<p>-Neisseriaelongata_protein.faa</p>
+		<p>-Neisseriaelongata_feature_table.txt</p>
 
 
-		<p>For other  reference organisms these files (.faa and _feature_table.txt) are generally  available on the NCBI FTP: (ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/bacteria/).  The third output file needed is the gDNA sequence (.dna) as a fasta files for  the other organism that will be compared(herein <em>Kingella denitrificans</em>) with the reference. This file can also be found  in the NCBI FTP. The user can choose the expect (E) value (for explanation on  this value see: <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=FAQ#expect">https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=FAQ#expect</a>).  It is expressed in e^(value enter by the user). By clicking &ldquo;Blast&rdquo; the tbalstn  analyses will start.<br />
+		<p>For other  reference organisms these files (.faa and _feature_table.txt) are generally  available on the NCBI FTP: (ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/bacteria/).  The third output file needed is the gDNA sequence (.dna) as a fasta files for  the other organism that will be compared(herein <em>Neisseria meningitidis</em>) with the reference. This file can also be found  in the NCBI FTP. The user can choose the expect (E) value (for explanation on  this value see: <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=FAQ#expect">https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=FAQ#expect</a>).  It is expressed in e^(value enter by the user). By clicking &ldquo;Blast&rdquo; the tbalstn  analyses will start.<br />
 			The report of  these analyses is stored in the Blast folder.  </p>
 		<div align="center">
 		<table>
 			<tr>
 				<td><div align="center">Blast  </div></td>
-				<td><img src="images/blast.png" width="479" height="305" alt="blast" /></td>
+				<td><img src="images/blast.png" width="489" height="331" alt="blast" /></td>
 			</tr>
 			<tr>
 				<td><div align="center">Filter</div></td>
-				<td><img src="images/filter.png" width="448" height="119" alt="filter" /></td>
+				<td><img src="images/filter.png" width="489" height="159" alt="filter" /></td>
 			</tr>
 		</table></div>
 		<p>The user must do this operation for all genomes that will be compared with the reference. At this point, the user can filter the blast results (---vs---.txt in the “blast” folder) separately to exclude non-conserved proteins if needed. The % of identity score threshold is chose by the user. A threshold of 0% will include all proteins and threshold could be defined latter. Again, this operation needs to be done for all genomes. The output created file will be stored in the “Filtered” folder.</p>
