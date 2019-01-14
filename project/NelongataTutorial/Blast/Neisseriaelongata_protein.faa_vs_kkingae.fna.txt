@@ -87263,7 +87263,7 @@ Effective search space used: 533857263
 
 
   Database: E:\juan_\Documents\Caprib-git\externalPrograms\kkingae.fna
-    Posted date:  Jan 9, 2019  11:34 AM
+    Posted date:  Jan 14, 2019  2:29 PM
   Number of letters in database: 1,975,353
   Number of sequences in database:  20
 
