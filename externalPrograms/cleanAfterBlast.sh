@@ -11,7 +11,8 @@ rm -r *.nog
 
 cd externalPrograms
 rm -r *.fasta
-rm -r *.fa
+rm -r *.faa
 rm -r *.dna
 rm -r *.txt
 rm -r *fna
+rm -r *.fa
