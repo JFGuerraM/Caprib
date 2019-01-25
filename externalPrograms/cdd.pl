@@ -16,15 +16,28 @@ my $bwrpsb = "https://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cgi";
 ###############################################################################
 my $outputf=pop(@ARGV);
 my $dmode=pop(@ARGV);
-my @queries = <STDIN>;
+my $inFile=pop(@ARGV);
 my $havequery = 0;
 
+my @queries;
+##### ADAPTATION ##############################################################
+#extract list from in file
+my $REP;
+open($REP, $inFile);
+while(<$REP>){
+chomp;
+$a=$_;
+
+push(@queries, $a);
+}
+close($REP);
 
 ###############################################################################
 # do some sort of validation and exit if only invalid lines found
 ###############################################################################
 
 foreach my $line (@queries) {
+  
   if ($line =~ /[a-zA-Z0-9_]+/) {
     $havequery = 1;
   }
@@ -100,6 +113,8 @@ if ($opt_q) {
 ###############################################################################
 my $rid;
 {
+
+  #print map {; queries => $_ } @queries ;
   my $browser = LWP::UserAgent->new;
   my $response = $browser->post(
     $bwrpsb,
@@ -173,7 +188,7 @@ print "=========================================================================
 ###############################################################################
 # retrieve and display results
 ###############################################################################
-#my $outputf=$rid.".txt";#"ProteinMutationsRepport.txt";
+
 my $REPO;
 open($REPO, ">$outputf");
 

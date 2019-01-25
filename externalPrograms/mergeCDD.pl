@@ -1,16 +1,14 @@
 #!/usr/bin/perl
 #Juan Guerra 18-10-16  
-#script to do set operations within species
+#script to merge caprib analyses with cdd ncbi hit results
 use strict;
 use warnings;
 #use Set::Scalar;
-#use Data::Dumper;
+use Data::Dumper;
 
 my $path= pop(@ARGV);
 my $hitdata=pop(@ARGV);
 my $report=pop(@ARGV);
-
-
 
 findCDD();
 exit;
@@ -18,7 +16,7 @@ exit;
 sub indices{ 
 	my $countHits=0; 	#counting every proteins in the file
 	my $REP;
-	my ($dictP,$dictM); #dictionary for proteins and mutations
+	my %dictP; #dictionary for proteins and mutations
 	my ($protein, $refseq);
 	open($REP, $report);
 	while(<$REP>){
@@ -29,19 +27,19 @@ sub indices{
 			$countHits++; 			
 			$protein= $values[0];
 			$refseq=$values[1];			
-			$dictP->{$refseq}=$protein;			
+			$dictP{$refseq}=$protein;			
 		}		
 	}
 	close($REP);
 
-	return $dictP;
+	return %dictP;
 }
 
-sub mutations{ 
+sub mutations
+{ 
 	my $countHits=0; 	#counting every proteins in the file
-	my $REP;
-	my $dictP={};
-	my $dictM={}; #dictionary for proteins and mutations
+	my $REP;	
+	my %dictM=(); #dictionary for proteins and mutations
 	my ($protein, $refseq);
 	open($REP, $report);
 	while(<$REP>){
@@ -52,21 +50,21 @@ sub mutations{
 			$countHits++; 			
 			$protein= $values[4];
 			$refseq=$values[1];			
-			$dictP->{$refseq}=$protein;			
+			$dictM{$refseq}=$protein;			
 		}		
 	}
 	close($REP);
 	
-	return $dictP;
+	return %dictM;
 }
 
 
 sub findCDD{
 	my $countHits=0; 	#counting every cdd in the file
 	my $HIT;
-	my $dictP=indices();	
+	my %dictP=indices();	
 	my ($fho, $output);
-	my $dictM=mutations();
+	my %dictM=mutations();
 	my ($protein, $refseq, $max, $min);
 	my @values;
 	$output= "$path";
@@ -83,12 +81,18 @@ sub findCDD{
 			$refseq=(split(" ", $line[0]))[2]; #on enleve le Q# - 
 			$min=$line[3];
 			$max=$line[4];
+			print "$min $max";	
 			
-			if (exists ($dictM->{$refseq})){
-				@values = %$dictM{$refseq};
-				my @mutations=split(",",($values[1]));
-				my $ref=%$dictP{$refseq};
-				foreach my $i(@mutations){
+			if (exists $dictM{$refseq}){
+				@values = $dictM{$refseq};
+				my @mut=();
+				if(scalar @values > 1){
+					@mut=split(",",($values[1]));
+				}else{
+					@mut =$values[0];
+				}
+				my $ref=$dictP{$refseq};
+				foreach my $i(@mut){
 					$i =~ s/[^a-zA-Z0-9_]//g;
 					if (($i >= $min) && ($i <= $max)){						
 						print $fho "$ref \t$i\t".$a."\n";						

@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #Juan Guerra 18-10-16  
-#script to do set operations within species
+#script to merge caprib analyses with cdd ncbi features results
 use strict;
 use warnings;
 #use Set::Scalar;
@@ -18,64 +18,59 @@ exit;
 sub indices{ 
 	my $countHits=0; 	#counting every proteins in the file
 	my $REP;
-	my ($dictP,$dictM); #dictionary for proteins and mutations
+	my %dictP; #dictionary for proteins and mutations
 	my ($protein, $refseq);
 	open($REP, $report);
 	while(<$REP>){
 		chomp;
 		$a=$_;
 		my @values =split(";", $a);
-		if (($a !~ /^Protein/)&&(scalar @values >5)){
+		if (($a !~ /^Protein/)&&(defined $values[4])){
 			$countHits++; 			
 			$protein= $values[0];
 			$refseq=$values[1];			
-			$dictP->{$refseq}=$protein;			
-		}
-		
+			$dictP{$refseq}=$protein;			
+		}		
 	}
 	close($REP);
-	print "Reporte con $countHits proteinas\n";
-	#print $countHits;
-	return $dictP;
+
+	return %dictP;
 }
+
 
 sub mutations{ 
 	my $countHits=0; 	#counting every proteins in the file
-	my $REP;
-	my $dictP={};
-	my $dictM={}; #dictionary for proteins and mutations
+	my $REP;	
+	my %dictM={}; #dictionary for proteins and mutations
 	my ($protein, $refseq);
 	open($REP, $report);
 	while(<$REP>){
 		chomp;
 		$a=$_;
 		my @values =split(";", $a);
-		
-		if (($a !~ /^Protein/)&&(scalar @values >3)){
+		if (($a !~ /^Protein/)&&(defined $values[4])){
 			$countHits++; 			
 			$protein= $values[4];
 			$refseq=$values[1];			
-			$dictP->{$refseq}=$protein;			
-		}
-		if ($a =~ /Stats: counting variations/){
-			last;
-		}
+			$dictM{$refseq}=$protein;			
+		}		
 	}
-	close($REP);		
-	return $dictP;
+	close($REP);
+	
+	return %dictM;
 }
+
 
 
 sub findCDD{
 	my $countHits=0; 	#counting every cdd in the file
 	my $HIT;
-	my $dictP=indices();	
+	my %dictP=indices();	
 	my ($fho, $output);
-	my $dictM=mutations();
+	my %dictM=mutations();
 	my ($refseq, $max, $min);
 	my (@values, @coordinate);
-	$output= "$path";#Elongata"mergedfetMtb.txt";#
-	print $hitdata;	
+	$output= "$path";#Elongata"mergedfetMtb.txt";#	
 	open($HIT, $hitdata);
 	open($fho,">$output");
 	print $fho "Protein\tMutation position\tQuery\tType\tTitle\tcoordinates\tcomplete size\tmapped size\tsource domain\n";
@@ -86,8 +81,7 @@ sub findCDD{
 		my @line =split("\t", $a);
 		if ($a =~ /^Q\#/){
 			$countHits++;			
-			$refseq=(split(" ", $line[0]))[2]; 
-			print $refseq."\n";
+			$refseq=(split(" ", $line[0]))[2]; 			
 			#we take coordinates, 3 cases: A34, p45 ..., P100; A34-P45; P100
 			if($line[3] =~/,/g){				
 				@coordinate=split(",", $line[3]);	
@@ -105,19 +99,22 @@ sub findCDD{
 				$min= undef;				
 			}
 			
-			if (exists ($dictM->{$refseq})){
+			if (exists ($dictM{$refseq})){
 				
-				@values = %$dictM{$refseq};
-				print "values1: @values[1]\n";
-				my @mutations=split(",",($values[1]));
-				print @mutations;
-				my $ref=%$dictP{$refseq}; #locustag
-				print $ref."\n";
-				foreach my $i(@mutations){
+				@values = $dictM{$refseq};
+				
+				my @mut=();
+				if(scalar @values > 1){
+					@mut=split(",",($values[1]));
+				}else{
+					@mut =$values[0];
+				}				
+				my $ref=$dictP{$refseq}; #locustag
+				
+				foreach my $i(@mut){
 					$i =~ s/[^a-zA-Z0-9_]//g;
 					
-					if (defined $min && ($i >= $min) && ($i <= $max)){
-						print "min: ".$min."\n";
+					if (defined $min && ($i >= $min) && ($i <= $max)){						
 						print $fho "$ref \t$i\t".$a."\n";						
 					}
 					else{
