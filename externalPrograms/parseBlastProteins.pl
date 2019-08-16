@@ -236,7 +236,8 @@ while(<$BLAST>){
 					for (my $i = 0; $i < scalar @trunqueS; $i++){
 						if ($trunqueS[$i] == $countGi){	
 							push(@aaStop, $counting);
-							$controlgap++;																
+							$controlgap++;	
+							$counting ++;
 						}							
 					}						
 						
